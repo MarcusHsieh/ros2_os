@@ -75,15 +75,15 @@ RUN apt-get update && apt-get install -y gpg wget \
 && apt-get install -y cmake \
 && rm -rf /var/lib/apt/lists/*
 
-# Install vcstool 
-RUN apt-get update && apt-get install -y python3-vcstool
+# # Install vcstool 
+# RUN apt-get update && apt-get install -y python3-vcstool
 
-COPY .devcontainer/packages.repos /root/ros2_ws/src/packages.repos
+# COPY .devcontainer/packages.repos /root/ros2_ws/src/packages.repos
 
-WORKDIR /root/ros2_ws/src
-RUN vcs import < packages.repos && \
-    cd .. && \
-    rosdep install --from-paths src --ignore-src -r -y && \
-    colcon build
+# WORKDIR /root/ros2_ws/src
+# RUN vcs import < packages.repos && \
+#     cd .. && \
+#     rosdep install --from-paths src --ignore-src -r -y && \
+#     colcon build
 
 RUN cd /root/ros2_ws && colcon build && rm -rf build log src
